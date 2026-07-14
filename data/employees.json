@@ -20,28 +20,29 @@
     {
       "id": "UTC-0001",
       "employeeId": "UTC-0001",
-      "name": "Ahmed Al Mutairi",
-      "title": "Sales Manager",
-      "department": "Sales Department",
-      "photo": "assets/Profile.jpg",
+      "name": "Thulasi Gonuguntala",
+      "title": "Group IT Business Partner",
+      "department": "Enterprise Business Solutions",
+      "photo": "assets/photos/Employeedemo.jpg",
       "phone": "+965 9000 0001",
       "email": "ahmed.almutairi@uniontc.com",
       "whatsapp": "96590000001",
       "linkedin": "https://www.linkedin.com/in/ahmed-al-mutairi",
-      "linkedinLabel": "Ahmed Al Mutairi"
+      "linkedinLabel": "Thulasi Gonuguntala"
     },
     {
       "id": "UTC-0002",
       "employeeId": "UTC-0002",
-      "name": "Sara Al Otaibi",
-      "title": "Marketing Lead",
-      "department": "Marketing Department",
-      "photo": "assets/photos/UTC-0002.jpg",
+      "variant": "exec",
+      "name": "Thulasi Gonuguntala",
+      "title": "Group IT Business Partner",
+      "department": "Enterprise Business Solutions",
+      "photo": "assets/photos/Employeedemo.jpg",
       "phone": "+965 9000 0002",
       "email": "sara.alotaibi@uniontc.com",
       "whatsapp": "96590000002",
       "linkedin": "https://www.linkedin.com/in/sara-al-otaibi",
-      "linkedinLabel": "Sara Al Otaibi"
+      "linkedinLabel": "Thulasi Gonuguntala"
     }
   ]
 }

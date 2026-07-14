@@ -124,7 +124,7 @@
       linear-gradient(120deg,#1b1b1e,#101012);
     border:1px solid var(--line)}
   .tagline .circ{width:44px;height:44px;flex:none;color:#e6e7e9;display:flex;align-items:center;justify-content:center}
-  .tagline .circ svg{width:28px;height:28px;flex:none}
+  .tagline .circ svg{width:31px;height:auto;flex:none}
   .tagline .circ.hs{font-size:30px;line-height:1;filter:grayscale(1) brightness(1.55) contrast(.8)}
   .tagline .big{font-size:16.5px;font-weight:700;letter-spacing:-.1px}
   .tagline .small{font-size:14.5px;color:var(--muted);margin-top:2px}
@@ -150,6 +150,23 @@
   .tab.on{color:#fff}
 
   .hidden{display:none!important}
+
+  /* ============ EXEC (gold) variant — only applies to variant:"exec" employees ============ */
+  .app.exec .bgfx{background-image:url('assets/BGexec2.png')}
+  .app.exec .ptitle{color:#e6be5e}
+  .app.exec .avatar{box-shadow:0 0 0 2.5px rgba(230,190,94,.9), 0 0 16px -2px rgba(230,190,94,.4), 0 14px 34px -14px rgba(0,0,0,.85)}
+  .app.exec .verified{border-color:rgba(230,190,94,.5);background:rgba(230,190,94,.08)}
+  .app.exec .act{border-color:rgba(230,190,94,.22)}
+  .app.exec .act .ico{color:#e6be5e}
+  .app.exec .card{border-color:rgba(230,190,94,.16)}
+  .app.exec .row .circ{color:#e6be5e;background:rgba(230,190,94,.09)}
+  .app.exec .tagline{border-color:rgba(230,190,94,.22)}
+  .app.exec .tagline .big{color:#e6be5e}
+  .app.exec .tagline .small{color:rgba(230,190,94,.82)}
+  .app.exec .tagline .circ{color:#e6be5e}
+  .app.exec .tb-btn{border-color:rgba(230,190,94,.38)}
+  .app.exec .nav{border-top-color:rgba(230,190,94,.18)}
+  .app.exec .tab.on{color:#e6be5e}
 </style>
 </head>
 <body>
@@ -188,7 +205,7 @@
     globe:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>',
     linkedin:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 5a1.94 1.94 0 1 1-3.88 0 1.94 1.94 0 0 1 3.88 0zM3.3 8.5h3.27V21H3.3V8.5zm5.36 0h3.13v1.7h.05c.44-.83 1.5-1.7 3.1-1.7 3.3 0 3.91 2.17 3.91 5V21h-3.27v-4.9c0-1.17-.02-2.67-1.63-2.67-1.63 0-1.88 1.27-1.88 2.58V21H8.66V8.5z"/></svg>',
     chevron:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>',
-    handshake:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m21 3-2.81 2.81a1 1 0 0 0 0 1.42"/><path d="M3 4h4l4 4-2 2a1 1 0 0 1-1.4 0L3 6"/></svg>',
+    handshake:'<svg viewBox="0 0 640 512" fill="currentColor"><path d="M323.4 85.2l-96.8 78.4c-16.1 13-19.2 36.4-7 53.1c12.9 17.8 38 21.3 55.3 7.8l99.3-77.2c7-5.4 17-4.2 22.5 2.8s4.2 17-2.8 22.5l-20.9 16.2L512 316.8 512 128l-.7 0-3.9-2.5L434.8 79c-15.3-9.8-33.2-15-51.4-15c-21.8 0-43 7.5-60 21.2zm22.8 124.4l-51.7 40.2C263 274.4 217.3 268 193.7 235.6c-22.2-30.5-16.6-73.1 12.7-96.8l83.2-67.3c-11.6-4.9-24.1-7.4-36.8-7.4C234 64 215.7 69.6 200 80l-72 48 0 224 28.2 0 91.4 83.4c19.6 17.9 49.9 16.5 67.8-3.1c5.5-6.1 9.2-13.2 11.1-20.6l17 15.6c19.5 17.9 49.9 16.6 67.8-2.9c4.5-4.9 7.8-10.6 9.9-16.5c19.4 13 45.8 10.3 62.1-7.5c17.9-19.5 16.6-49.9-2.9-67.8l-134.2-123zM16 128c-8.8 0-16 7.2-16 16L0 352c0 17.7 14.3 32 32 32l32 0c17.7 0 32-14.3 32-32l0-224-80 0zM48 320a16 16 0 1 1 0 32 16 16 0 1 1 0-32zM544 128l0 224c0 17.7 14.3 32 32 32l32 0c17.7 0 32-14.3 32-32l0-208c0-8.8-7.2-16-16-16l-80 0zm32 208a16 16 0 1 1 32 0 16 16 0 1 1 -32 0z"/></svg>',
     check:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>',
     person:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9zm0 2c-3.9 0-8 1.95-8 5.5V21h16v-1.5c0-3.55-4.1-5.5-8-5.5z"/></svg>',
     news:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h13a1 1 0 0 1 1 1v14a2 2 0 0 0 2 2H6a2 2 0 0 1-2-2V4z"/><path d="M18 8h2a1 1 0 0 1 1 1v10a2 2 0 0 1-2 2"/><path d="M8 8h6M8 12h6M8 16h4"/></svg>',
@@ -207,6 +224,8 @@
 
   var DATA = { company:{}, employees:[] };
   var current = null;
+  var isExec = false;
+  function goldable(path){ return isExec ? path.replace(/\.png$/i,'-gold.png') : path; }
 
   function qs(k){ try{ return new URLSearchParams(location.search).get(k); }catch(e){ return null; } }
   function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
@@ -228,7 +247,7 @@
       '<div class="phead">'+
         '<div class="avatar">'+avatar+'</div>'+
         '<div class="pmeta">'+
-          '<div class="verified" title="Verified"><img src="assets/verified.png" alt="Verified"></div>'+
+          '<div class="verified" title="Verified"><img src="'+goldable('assets/verified.png')+'" alt="Verified"></div>'+
           '<div class="pname">'+esc(emp.name)+'</div>'+
           '<div class="ptitle">'+esc(emp.title)+'</div>'+
           '<div class="pdiv"></div>'+
@@ -257,7 +276,7 @@
       '</div>'+
       // tagline
       '<div class="tagline">'+
-        '<div class="circ hs">&#129309;</div>'+
+        '<div class="circ">'+ICON.handshake+'</div>'+
         '<div><div class="big">'+esc((co.closing||'').split(' that ')[0])+'</div>'+
           '<div class="small">'+esc(co.closing && co.closing.indexOf(' that ')>=0 ? 'that '+co.closing.split(' that ')[1] : '')+'</div></div>'+
       '</div>';
@@ -369,6 +388,8 @@
     DATA=data;
     var id=qs('id');
     current = (data.employees||[]).find(function(e){ return e.id===id || e.employeeId===id; }) || (data.employees||[])[0];
+    isExec = !!(current && current.variant==='exec');
+    document.querySelector('.app').classList.toggle('exec', isExec);
     document.title = current ? (current.name+' · '+data.company.name) : data.company.name;
     render(current||{}, data.company||{});
     renderNav(); setTab('employee');
