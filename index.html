@@ -14,89 +14,66 @@
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   html,body{margin:0;padding:0}
   :root{
-    --bg:#050506;
-    --panel:#131315;
-    --panel2:#1a1a1d;
-    --line:rgba(255,255,255,.07);
-    --line2:rgba(255,255,255,.11);
-    --text:#f4f4f5;
-    --muted:rgba(244,244,245,.56);
-    --faint:rgba(244,244,245,.34);
+    --bg:#050506; --panel:#131315; --panel2:#1a1a1d;
+    --line:rgba(255,255,255,.07); --line2:rgba(255,255,255,.11);
+    --text:#f4f4f5; --muted:rgba(244,244,245,.56); --faint:rgba(244,244,245,.34);
     --silver1:#f2f2f4; --silver2:#b9bcc2; --silver3:#7d8189;
+    --gold:#e6be5e;
     --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
     --maxw:440px;
   }
-  body{
-    background:#0a0a0b;color:var(--text);font-family:var(--font);
-    -webkit-font-smoothing:antialiased;line-height:1.45;
-    display:flex;justify-content:center;
-  }
-  /* phone-width column, centered on desktop */
-  .app{
-    width:100%;max-width:var(--maxw);height:100vh;height:100dvh;
-    position:relative;overflow:hidden;
-    background:#050506;
-    display:flex;flex-direction:column;
-  }
-  /* background layer (a real element, so it always paints AND can be blurred per-page) */
+  body{background:#0a0a0b;color:var(--text);font-family:var(--font);-webkit-font-smoothing:antialiased;line-height:1.45;display:flex;justify-content:center}
+  .app{width:100%;max-width:var(--maxw);height:100vh;height:100dvh;position:relative;overflow:hidden;background:#050506;display:flex;flex-direction:column}
   .bgfx{position:absolute;inset:0;z-index:0;pointer-events:none;
-    background:url('assets/BG.png') no-repeat;
-    background-size:var(--bgsz, 72%) auto;                 /* smaller emblem */
-    background-position:right var(--bgy, -5vh);            /* top-right corner */
+    background:url('assets/BG.png') no-repeat;background-size:var(--bgsz,72%) auto;background-position:right var(--bgy,-5vh);
     transition:filter .35s ease, transform .35s ease}
   .app.biz .bgfx{filter:blur(17px) brightness(.6);transform:scale(1.1)}
-  @media(min-width:520px){
+  @media(min-width:520px) and (max-width:999.9px){
     body{align-items:center;padding:22px 0}
-    .app{min-height:auto;height:min(920px,94vh);border-radius:30px;
-      box-shadow:0 40px 100px -30px rgba(0,0,0,.85), inset 0 0 0 1px rgba(255,255,255,.05)}
+    .app{min-height:auto;height:min(920px,94vh);border-radius:30px;box-shadow:0 40px 100px -30px rgba(0,0,0,.85), inset 0 0 0 1px rgba(255,255,255,.05)}
   }
   a{color:inherit;text-decoration:none}
-  .scroll{flex:1;min-height:0;position:relative;z-index:1;overflow-y:auto;overscroll-behavior:contain;padding:0 20px 22px;}
-  .scroll::-webkit-scrollbar{width:0}
+  .scroll{flex:1;min-height:0;position:relative;z-index:1;overflow-y:auto;overscroll-behavior:contain;padding:0 20px 22px;scrollbar-width:none}
+  .scroll::-webkit-scrollbar{width:0;height:0}
+  .scroll::-webkit-scrollbar-thumb{background:rgba(255,255,255,.14);border-radius:8px}
 
-  /* share bar (inside scroll, top-right) */
-  .topbar{display:flex;align-items:center;justify-content:flex-end;gap:10px;padding:calc(12px + env(safe-area-inset-top,0px)) 0 2px;}
-  .tb-btn{display:inline-flex;align-items:center;gap:7px;height:38px;padding:0 15px;
-    border-radius:999px;border:1px solid var(--line2);background:rgba(255,255,255,.04);
-    color:var(--text);font-size:14px;font-weight:500;cursor:pointer}
-  .tb-btn.icon{width:38px;padding:0;justify-content:center}
-  .tb-btn:active{background:rgba(255,255,255,.09)}
+  /* top bar */
+  .topbar{display:flex;align-items:center;gap:10px;padding:calc(12px + env(safe-area-inset-top,0px)) 0 2px}
+  .deck-label{display:none;color:var(--muted);font-size:15px;font-weight:500}
+  .tb-actions{margin-left:auto;display:flex;gap:10px}
+  .tb-btn{display:inline-flex;align-items:center;gap:7px;height:38px;padding:0 15px;border-radius:999px;border:1px solid var(--line2);background:rgba(255,255,255,.04);color:var(--text);font-size:14px;font-weight:500;cursor:pointer}
+  .tb-btn:active,.tb-btn:hover{background:rgba(255,255,255,.09)}
 
-  /* brand row */
+  /* rail (desktop sidebar) + footer — hidden on mobile */
+  .rail{display:none}
+  .deck-foot{display:none}
+
+  /* brand row (mobile) */
   .brand{display:flex;align-items:flex-start;justify-content:space-between;padding:10px 4px 16px}
-  .logo-img{width:118px;height:auto;margin-top:8px;display:block;filter:drop-shadow(0 2px 6px rgba(0,0,0,.4))}
+  .logo-img{width:118px;height:auto;display:block;filter:drop-shadow(0 2px 6px rgba(0,0,0,.4))}
   .wordmark{line-height:1}
   .wordmark .u{font-size:34px;font-weight:600;letter-spacing:-.5px;color:#eef0f2}
-  .wordmark .u b{font-weight:700}
   .wordmark .sub{font-size:12px;font-weight:700;letter-spacing:.5px;color:#cfd2d7;margin-top:2px;padding-left:2px}
-  .emblem{width:120px;height:120px;margin:-12px -6px 0 0;filter:drop-shadow(0 10px 24px rgba(0,0,0,.6))}
 
   /* profile head */
   .phead{display:flex;align-items:flex-start;gap:16px;padding:16px 4px 4px}
-  .avatar{width:132px;height:132px;border-radius:50%;flex:none;position:relative;
-    background:linear-gradient(160deg,#26272b,#141416);
-    box-shadow:inset 0 0 0 1px rgba(255,255,255,.08), 0 12px 30px -12px rgba(0,0,0,.8);overflow:hidden}
+  .avatar-wrap{position:relative;flex:none}
+  .avatar{width:132px;height:132px;border-radius:50%;flex:none;position:relative;background:linear-gradient(160deg,#26272b,#141416);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08), 0 12px 30px -12px rgba(0,0,0,.8);overflow:hidden}
   .avatar img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block}
-  .avatar .initials{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-    font-size:40px;font-weight:600;color:var(--silver2);letter-spacing:1px}
-  .pmeta{min-width:0;flex:1;padding-top:46px}   /* start the text in the lower half of the photo */
-  .verified{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.06);
-    border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;margin-bottom:8px}
+  .avatar .initials{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:40px;font-weight:600;color:var(--silver2);letter-spacing:1px}
+  .pmeta{min-width:0;flex:1;padding-top:46px}
+  .verified{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.06);border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;margin-bottom:8px}
   .verified img{width:19px;height:19px;object-fit:contain;filter:drop-shadow(0 0 5px rgba(255,255,255,.35))}
   .pname{font-size:18px;font-weight:700;letter-spacing:-.2px;line-height:1.15}
   .ptitle{font-size:13px;color:var(--muted);margin-top:2px;font-weight:500}
   .pdiv{width:28px;height:1px;background:var(--line2);margin:9px 0}
   .pdept{font-size:12px;color:var(--muted)}
-  .pid{display:inline-block;margin-top:9px;margin-left:-10px;font-size:11px;color:var(--muted);
-    font-family:ui-monospace,'SF Mono',monospace;background:rgba(255,255,255,.05);
-    border:1px solid var(--line);padding:3px 9px;border-radius:7px;letter-spacing:.2px}
+  .pid{display:inline-block;margin-top:9px;margin-left:-10px;font-size:11px;color:var(--muted);font-family:ui-monospace,'SF Mono',monospace;background:rgba(255,255,255,.05);border:1px solid var(--line);padding:3px 9px;border-radius:7px;letter-spacing:.2px}
 
   /* action grid */
   .actions{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin:22px 0 8px}
-  .act{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;
-    height:86px;border-radius:16px;background:var(--panel);border:1px solid var(--line);
-    color:var(--text);cursor:pointer;transition:background .15s}
-  .act:active{background:var(--panel2)}
+  .act{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;height:86px;border-radius:16px;background:var(--panel);border:1px solid var(--line);color:var(--text);cursor:pointer;transition:background .15s}
+  .act:active,.act:hover{background:var(--panel2)}
   .act .ico{width:24px;height:24px;color:#e9eaec}
   .act .ico svg{width:24px;height:24px;display:block}
   .act .lbl{font-size:12.5px;color:var(--muted);font-weight:500}
@@ -105,45 +82,41 @@
   .card{background:var(--panel);border:1px solid var(--line);border-radius:18px;margin-top:14px;overflow:hidden}
   .row{display:flex;align-items:center;gap:15px;padding:16px 17px;cursor:pointer}
   .row + .row{border-top:1px solid var(--line)}
-  .row:active{background:var(--panel2)}
-  .row .circ{width:44px;height:44px;border-radius:50%;flex:none;background:rgba(255,255,255,.05);
-    display:flex;align-items:center;justify-content:center;color:#dcdde0}
+  .row:active,.row:hover{background:var(--panel2)}
+  .row .circ{width:44px;height:44px;border-radius:50%;flex:none;background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;color:#dcdde0}
   .row .circ svg{width:21px;height:21px;flex:none}
   .row .grow{min-width:0;flex:1}
   .row .t1{font-size:16px;font-weight:600;letter-spacing:-.1px}
   .row .t2{font-size:14px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .row .chev{color:var(--faint);flex:none}
-
   .company .t1{font-size:17px}
   .company .t2{white-space:normal}
+  .info-grid{display:contents}
 
   /* tagline */
-  .tagline{margin-top:16px;border-radius:18px;padding:20px 18px;display:flex;align-items:center;gap:16px;
-    background:
-      repeating-linear-gradient(100deg, rgba(255,255,255,.02) 0 2px, transparent 2px 7px),
-      linear-gradient(120deg,#1b1b1e,#101012);
-    border:1px solid var(--line)}
+  .tagline{margin-top:16px;border-radius:18px;padding:20px 18px;display:flex;align-items:center;gap:16px;background:repeating-linear-gradient(100deg, rgba(255,255,255,.02) 0 2px, transparent 2px 7px), linear-gradient(120deg,#1b1b1e,#101012);border:1px solid var(--line)}
   .tagline .circ{width:44px;height:44px;flex:none;color:#e6e7e9;display:flex;align-items:center;justify-content:center}
   .tagline .circ svg{width:31px;height:auto;flex:none}
-  .tagline .circ.hs{font-size:30px;line-height:1;filter:grayscale(1) brightness(1.55) contrast(.8)}
   .tagline .big{font-size:16.5px;font-weight:700;letter-spacing:-.1px}
   .tagline .small{font-size:14.5px;color:var(--muted);margin-top:2px}
 
-  /* placeholder views */
-  .placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;
-    text-align:center;gap:14px;min-height:60vh;padding:0 24px;color:var(--muted)}
-  .placeholder .pcirc{width:64px;height:64px;border-radius:20px;background:var(--panel);
-    border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:#cfd0d3}
-  .placeholder .pcirc svg{width:28px;height:28px;flex:none}
-  .placeholder h3{margin:0;color:var(--text);font-size:20px;font-weight:700}
-  .placeholder p{margin:0;font-size:14px;max-width:260px}
+  /* placeholder / company view */
+  .placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:14px;min-height:60vh;padding:0 24px;color:var(--muted)}
+  .company-page{padding-top:22px}
+  .co-head{text-align:center;margin-bottom:22px}
+  .co-logo{width:194px;margin:8px auto 14px;display:block}
+  .co-tag{color:var(--muted);font-size:14px}
+  .co-about{padding:16px 17px}
+  .co-label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--faint);margin-bottom:9px}
+  .co-text{font-size:14px;color:var(--muted);line-height:1.65}
+  .co-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:14px}
+  .co-stat{margin-top:0;padding:14px 12px;text-align:center}
+  .co-stat .v{font-size:19px;font-weight:700}
+  .co-stat .l{font-size:11.5px;color:var(--muted);margin-top:3px}
 
-  /* bottom nav (pinned — stays on screen while content scrolls) */
-  .nav{flex:none;position:relative;z-index:5;display:flex;gap:2px;
-    padding:9px 8px calc(9px + env(safe-area-inset-bottom,0px));
-    background:rgba(9,9,11,.92);backdrop-filter:blur(16px);border-top:1px solid var(--line)}
-  .tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:5px 0;
-    background:none;border:none;cursor:pointer;color:var(--faint)}
+  /* mobile bottom nav */
+  .nav{flex:none;position:relative;z-index:5;display:flex;gap:2px;padding:9px 8px calc(9px + env(safe-area-inset-bottom,0px));background:rgba(9,9,11,.92);backdrop-filter:blur(16px);border-top:1px solid var(--line)}
+  .tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:5px 0;background:none;border:none;cursor:pointer;color:var(--faint)}
   .tab .ico{width:22px;height:22px}
   .tab .ico svg{width:22px;height:22px;display:block}
   .tab .lbl{font-size:11px;font-weight:500}
@@ -151,43 +124,129 @@
 
   .hidden{display:none!important}
 
-  /* ============ EXEC (gold) variant — only applies to variant:"exec" employees ============ */
+  /* ============ EXEC (gold) variant ============ */
   .app.exec .bgfx{background-image:url('assets/BGexec2.png')}
-  .app.exec .ptitle{color:#e6be5e}
+  .app.exec .ptitle{color:var(--gold)}
   .app.exec .avatar{box-shadow:0 0 0 2.5px rgba(230,190,94,.9), 0 0 16px -2px rgba(230,190,94,.4), 0 14px 34px -14px rgba(0,0,0,.85)}
   .app.exec .verified{border-color:rgba(230,190,94,.5);background:rgba(230,190,94,.08)}
   .app.exec .act{border-color:rgba(230,190,94,.22)}
-  .app.exec .act .ico{color:#e6be5e}
+  .app.exec .act .ico{color:var(--gold)}
   .app.exec .card{border-color:rgba(230,190,94,.16)}
-  .app.exec .row .circ{color:#e6be5e;background:rgba(230,190,94,.09)}
+  .app.exec .row .circ{color:var(--gold);background:rgba(230,190,94,.09)}
   .app.exec .tagline{border-color:rgba(230,190,94,.22)}
-  .app.exec .tagline .big{color:#e6be5e}
+  .app.exec .tagline .big{color:var(--gold)}
   .app.exec .tagline .small{color:rgba(230,190,94,.82)}
-  .app.exec .tagline .circ{color:#e6be5e}
+  .app.exec .tagline .circ{color:var(--gold)}
   .app.exec .tb-btn{border-color:rgba(230,190,94,.38)}
   .app.exec .nav{border-top-color:rgba(230,190,94,.18)}
-  .app.exec .tab.on{color:#e6be5e}
+  .app.exec .tab.on{color:var(--gold)}
+
+  /* ==================== DESKTOP ==================== */
+  @media(min-width:1000px){
+    body{display:block}
+    .app{max-width:none;width:100vw;height:100vh;border-radius:0;box-shadow:none;display:grid;grid-template-columns:280px 1fr;grid-template-rows:1fr auto}
+    .bgfx,.app.exec .bgfx{background-image:url('assets/BGdesktop.png');background-repeat:no-repeat;background-size:auto 82%;background-position:right -4%;transform:none}
+    .app.biz .bgfx{filter:blur(22px) brightness(.5);transform:none}
+
+    /* sidebar */
+    .rail{display:flex;flex-direction:column;grid-row:1/3;grid-column:1;z-index:2;padding:52px 28px 26px;border-right:1px solid var(--line);background:rgba(6,6,8,.55);backdrop-filter:blur(8px)}
+    .rail-logo .logo-img{width:142px;margin:0 0 52px 6px}
+    .navd{display:flex;flex-direction:column;gap:5px;background:none;border:none;padding:0;position:static}
+    .navd .tab{flex-direction:row;justify-content:flex-start;gap:13px;padding:11px 15px;border-radius:12px;width:100%;color:var(--muted)}
+    .navd .tab .ico{width:21px;height:21px}
+    .navd .tab .lbl{font-size:15px;font-weight:500}
+    .navd .tab.on{background:rgba(255,255,255,.08);color:#fff}
+    .app.exec .navd .tab.on{background:rgba(230,190,94,.12);color:var(--gold)}
+    .rail-spacer{flex:1;min-height:20px}
+    .rail-tag .tagline{margin-top:0;flex-direction:column;align-items:flex-start;text-align:left;gap:13px;padding:20px 18px}
+    .rail-tag .tagline .circ{width:48px;height:48px;background:rgba(255,255,255,.05);border-radius:50%}
+    .rail-tag .tagline .circ svg{width:29px}
+    .rail-tag .tagline .big{font-size:16px}
+    .rail-tag .tagline .small{font-size:13.5px}
+
+    /* main column */
+    .scroll{grid-column:2;grid-row:1;display:flex;flex-direction:column;padding:0 54px}
+    .topbar{padding:22px 0 0;flex:none}
+    #view-profile{margin:auto 0;padding:6px 0;max-width:1120px;width:100%}
+    #view-other{margin:auto 0;max-width:1000px;width:100%;padding:16px 0}
+    .company-page{padding-top:0;display:grid;grid-template-columns:1.12fr 1fr;grid-template-areas:"head head" "stats stats" "about info";gap:18px 22px;align-content:center}
+    .co-head{grid-area:head;margin-bottom:2px}
+    .co-logo{width:174px;margin:0 auto 12px}
+    .co-tag{font-size:15px}
+    .co-about{grid-area:about;margin-top:0;padding:22px 24px}
+    .co-label{font-size:12px;margin-bottom:11px}
+    .co-text{font-size:15px;line-height:1.7}
+    .co-stats{grid-area:stats;margin-top:0;gap:16px}
+    .co-stat{padding:18px 14px}
+    .co-stat .v{font-size:22px}
+    .co-stat .l{font-size:12.5px}
+    .co-info{grid-area:info;margin-top:0;align-self:start}
+
+    .brand{display:none}          /* logo lives in the rail on desktop */
+    .phead{gap:34px;padding:0 2px;align-items:center}
+    .avatar{width:174px;height:174px}
+    .avatar img{object-position:50% 28%}
+    .avatar .initials{font-size:56px}
+    .avatar-wrap .verified{position:absolute;bottom:8px;right:11px;width:42px;height:42px;margin:0;z-index:2;background:#141416}
+    .avatar-wrap .verified img{width:25px;height:25px}
+    .pmeta{padding-top:0}
+    .pname{font-size:36px;line-height:1.05}
+    .ptitle{font-size:20px;margin-top:7px}
+    .pdiv{width:50px;margin:16px 0}
+    .pdept{font-size:16px}
+    .pid{margin-left:0;margin-top:14px;font-size:13px;padding:5px 12px}
+
+    .actions{grid-template-columns:repeat(4,minmax(0,172px));justify-content:start;gap:16px;margin:38px 0 26px}
+    .act{height:116px;border-radius:18px}
+    .act .lbl{font-size:14.5px}
+
+    .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .info-grid .card{margin-top:0}
+    .row{padding:22px 24px}
+    .row .circ{width:48px;height:48px}
+    .row .t1{font-size:17px}
+
+    /* footer */
+    .deck-foot{display:flex;align-items:center;justify-content:space-between;grid-column:2;grid-row:2;padding:12px 44px 16px;color:var(--faint);font-size:13px;border-top:1px solid var(--line);z-index:1;position:relative}
+    .foot-social{display:flex;gap:11px}
+    .foot-social a{width:42px;height:42px;border-radius:50%;background:var(--panel);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:#cfd0d3}
+    .foot-social a:hover{background:var(--panel2)}
+    .foot-social a svg{width:18px;height:18px}
+    .app.exec .foot-social a{color:var(--gold);border-color:rgba(230,190,94,.2)}
+
+    .nav{display:none}            /* mobile bottom nav hidden on desktop */
+  }
 </style>
 </head>
 <body>
 <div class="app">
   <div class="bgfx"></div>
 
+  <!-- DESKTOP SIDEBAR -->
+  <aside class="rail">
+    <div class="rail-logo"><img class="logo-img" src="assets/union-logo.png" alt="Union Trading Co." onerror="this.style.display='none'"></div>
+    <nav class="navd" id="navd"></nav>
+    <div class="rail-spacer"></div>
+    <div class="rail-tag" id="rail-tag"></div>
+  </aside>
+
   <div class="scroll">
-    <!-- Share bar -->
     <div class="topbar">
-      <button class="tb-btn" id="shareBtn">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4"/><path d="m7 9 5-5 5 5"/><path d="M5 12v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>
-        Share
-      </button>
+      <div class="tb-actions">
+        <button class="tb-btn" id="shareBtn">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4"/><path d="m7 9 5-5 5 5"/><path d="M5 12v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>
+          Share
+        </button>
+      </div>
     </div>
-    <!-- PROFILE VIEW -->
     <div id="view-profile"></div>
-    <!-- OTHER VIEWS -->
     <div id="view-other" class="hidden"></div>
   </div>
 
-  <!-- PINNED BOTTOM NAV -->
+  <!-- DESKTOP FOOTER -->
+  <footer class="deck-foot" id="foot"></footer>
+
+  <!-- MOBILE BOTTOM NAV -->
   <nav class="nav" id="nav"></nav>
 </div>
 
@@ -207,113 +266,104 @@
     chevron:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>',
     handshake:'<svg viewBox="0 0 640 512" fill="currentColor"><path d="M323.4 85.2l-96.8 78.4c-16.1 13-19.2 36.4-7 53.1c12.9 17.8 38 21.3 55.3 7.8l99.3-77.2c7-5.4 17-4.2 22.5 2.8s4.2 17-2.8 22.5l-20.9 16.2L512 316.8 512 128l-.7 0-3.9-2.5L434.8 79c-15.3-9.8-33.2-15-51.4-15c-21.8 0-43 7.5-60 21.2zm22.8 124.4l-51.7 40.2C263 274.4 217.3 268 193.7 235.6c-22.2-30.5-16.6-73.1 12.7-96.8l83.2-67.3c-11.6-4.9-24.1-7.4-36.8-7.4C234 64 215.7 69.6 200 80l-72 48 0 224 28.2 0 91.4 83.4c19.6 17.9 49.9 16.5 67.8-3.1c5.5-6.1 9.2-13.2 11.1-20.6l17 15.6c19.5 17.9 49.9 16.6 67.8-2.9c4.5-4.9 7.8-10.6 9.9-16.5c19.4 13 45.8 10.3 62.1-7.5c17.9-19.5 16.6-49.9-2.9-67.8l-134.2-123zM16 128c-8.8 0-16 7.2-16 16L0 352c0 17.7 14.3 32 32 32l32 0c17.7 0 32-14.3 32-32l0-224-80 0zM48 320a16 16 0 1 1 0 32 16 16 0 1 1 0-32zM544 128l0 224c0 17.7 14.3 32 32 32l32 0c17.7 0 32-14.3 32-32l0-208c0-8.8-7.2-16-16-16l-80 0zm32 208a16 16 0 1 1 32 0 16 16 0 1 1 -32 0z"/></svg>',
     check:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>',
-    person:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9zm0 2c-3.9 0-8 1.95-8 5.5V21h16v-1.5c0-3.55-4.1-5.5-8-5.5z"/></svg>',
-    news:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h13a1 1 0 0 1 1 1v14a2 2 0 0 0 2 2H6a2 2 0 0 1-2-2V4z"/><path d="M18 8h2a1 1 0 0 1 1 1v10a2 2 0 0 1-2 2"/><path d="M8 8h6M8 12h6M8 16h4"/></svg>',
-    connect:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14v-2a9 9 0 0 1 18 0v2"/><rect x="2" y="14" width="4" height="6" rx="1.5"/><rect x="18" y="14" width="4" height="6" rx="1.5"/><path d="M18 20a3 3 0 0 1-3 3h-2"/></svg>'
+    person:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9zm0 2c-3.9 0-8 1.95-8 5.5V21h16v-1.5c0-3.55-4.1-5.5-8-5.5z"/></svg>'
   };
-
-  // Metallic Ü emblem (approximation of the brand mark — replace assets/emblem.png later).
-  var EMBLEM =
-    '<svg class="emblem" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">'+
-    '<defs><linearGradient id="mtl" x1="20" y1="10" x2="100" y2="115" gradientUnits="userSpaceOnUse">'+
-    '<stop stop-color="#ffffff"/><stop offset=".45" stop-color="#c7cace"/><stop offset=".75" stop-color="#83878e"/><stop offset="1" stop-color="#5b5e64"/></linearGradient>'+
-    '<linearGradient id="mtl2" x1="70" y1="18" x2="96" y2="46" gradientUnits="userSpaceOnUse">'+
-    '<stop stop-color="#ffffff"/><stop offset="1" stop-color="#9a9ea5"/></linearGradient></defs>'+
-    '<path d="M34 34 V70 a26 26 0 0 0 52 0 V34 h-15 V70 a11 11 0 0 1-22 0 V34 Z" fill="url(#mtl)"/>'+
-    '<circle cx="83" cy="30" r="14" fill="url(#mtl2)"/></svg>';
 
   var DATA = { company:{}, employees:[] };
   var current = null;
   var isExec = false;
   function goldable(path){ return isExec ? path.replace(/\.png$/i,'-gold.png') : path; }
+  var mqDesktop = window.matchMedia('(min-width:1000px)');
 
   function qs(k){ try{ return new URLSearchParams(location.search).get(k); }catch(e){ return null; } }
   function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
   function initials(name){ return String(name||'').split(/\s+/).filter(Boolean).slice(0,2).map(function(w){return w[0];}).join('').toUpperCase(); }
 
-  function render(emp, co){
-    var pv = document.getElementById('view-profile');
-    var avatar = emp.photo
+  // ---- shared building blocks ----
+  function avatarInner(emp){
+    return emp.photo
       ? '<img src="'+esc(emp.photo)+'" alt="'+esc(emp.name)+'" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'"><span class="initials" style="display:none">'+esc(initials(emp.name))+'</span>'
       : '<span class="initials">'+esc(initials(emp.name))+'</span>';
-
-    pv.innerHTML =
-      // brand
-      '<div class="brand">'+
-        '<img class="logo-img" src="assets/union-logo.png" alt="Union Trading Co." '+
-          'onerror="this.outerHTML=\'<div class=&quot;wordmark&quot;><div class=&quot;u&quot;>&Uuml;nion</div><div class=&quot;sub&quot;>Trading Co.</div></div>\'">'+
-      '</div>'+
-      // profile head
-      '<div class="phead">'+
-        '<div class="avatar">'+avatar+'</div>'+
-        '<div class="pmeta">'+
-          '<div class="verified" title="Verified"><img src="'+goldable('assets/verified.png')+'" alt="Verified"></div>'+
-          '<div class="pname">'+esc(emp.name)+'</div>'+
-          '<div class="ptitle">'+esc(emp.title)+'</div>'+
-          '<div class="pdiv"></div>'+
-          '<div class="pdept">'+esc(emp.department)+'</div>'+
-          (emp.employeeId?'<div class="pid">Employee No. '+esc(emp.employeeId)+'</div>':'')+
-        '</div>'+
-      '</div>'+
-      // actions
-      '<div class="actions">'+
-        act('phone','Call','act-call')+
-        act('mail','Email','act-email')+
-        act('whatsapp','WhatsApp','act-wa')+
-        act('addcontact','Add Contact','act-vcf')+
-      '</div>'+
-      // company card
-      '<div class="card"><div class="row company" data-link="business">'+
-        '<div class="circ">'+ICON.building+'</div>'+
-        '<div class="grow"><div class="t1">'+esc(co.name)+'</div><div class="t2">'+esc(co.tagline)+'</div></div>'+
-        '<div class="chev">'+ICON.chevron+'</div>'+
-      '</div></div>'+
-      // info card
-      '<div class="card">'+
-        infoRow('pin','Head Office', co.headOffice, co.headOfficeMap)+
-        infoRow('globe','Website', co.websiteLabel, co.website)+
-        infoRow('linkedin','LinkedIn', emp.linkedinLabel||co.linkedinLabel, emp.linkedin||co.linkedin)+
-      '</div>'+
-      // tagline
-      '<div class="tagline">'+
-        '<div class="circ">'+ICON.handshake+'</div>'+
-        '<div><div class="big">'+esc((co.closing||'').split(' that ')[0])+'</div>'+
-          '<div class="small">'+esc(co.closing && co.closing.indexOf(' that ')>=0 ? 'that '+co.closing.split(' that ')[1] : '')+'</div></div>'+
-      '</div>';
-
-    // wire actions
-    on('act-call', function(){ location.href='tel:'+ (emp.phone||'').replace(/\s+/g,''); });
-    on('act-email', function(){ location.href='mailto:'+ (emp.email||''); });
-    on('act-wa', function(){ window.open('https://wa.me/'+ (emp.whatsapp||'').replace(/[^0-9]/g,''), '_blank'); });
-    on('act-vcf', function(){ downloadVCard(emp, co); });
   }
-
+  function badgeHTML(){ return '<div class="verified" title="Verified"><img src="'+goldable('assets/verified.png')+'" alt="Verified"></div>'; }
+  function metaLines(emp){
+    return '<div class="pname">'+esc(emp.name)+'</div>'+
+      '<div class="ptitle">'+esc(emp.title)+'</div>'+
+      '<div class="pdiv"></div>'+
+      '<div class="pdept">'+esc(emp.department)+'</div>'+
+      (emp.employeeId?'<div class="pid">Employee No. '+esc(emp.employeeId)+'</div>':'');
+  }
   function act(icon,label,id){ return '<button class="act" id="'+id+'"><span class="ico">'+ICON[icon]+'</span><span class="lbl">'+esc(label)+'</span></button>'; }
+  function actionsHTML(){ return '<div class="actions">'+act('phone','Call','act-call')+act('mail','Email','act-email')+act('whatsapp','WhatsApp','act-wa')+act('addcontact','Add Contact','act-vcf')+'</div>'; }
   function infoRow(icon,t1,t2,href){
     return '<a class="row" '+(href?('href="'+esc(href)+'" target="_blank" rel="noopener"'):'')+'>'+
       '<div class="circ">'+ICON[icon]+'</div>'+
       '<div class="grow"><div class="t1">'+esc(t1)+'</div><div class="t2">'+esc(t2)+'</div></div>'+
       '<div class="chev">'+ICON.chevron+'</div></a>';
   }
+  function companyCard(co){
+    return '<div class="card"><div class="row company" data-link="business">'+
+      '<div class="circ">'+ICON.building+'</div>'+
+      '<div class="grow"><div class="t1">'+esc(co.name)+'</div><div class="t2">'+esc(co.tagline)+'</div></div>'+
+      '<div class="chev">'+ICON.chevron+'</div></div></div>';
+  }
+  function oneCard(icon,t1,t2,href){ return '<div class="card">'+infoRow(icon,t1,t2,href)+'</div>'; }
+  function taglineHTML(co){
+    var c=co.closing||'';
+    return '<div class="tagline"><div class="circ">'+ICON.handshake+'</div>'+
+      '<div><div class="big">'+esc(c.split(' that ')[0])+'</div>'+
+      '<div class="small">'+esc(c.indexOf(' that ')>=0 ? 'that '+c.split(' that ')[1] : '')+'</div></div></div>';
+  }
+
+  function render(emp, co){
+    if(mqDesktop.matches) renderDesktop(emp,co); else renderMobile(emp,co);
+    // wire actions (both layouts use the same button ids)
+    on('act-call', function(){ location.href='tel:'+ (emp.phone||'').replace(/\s+/g,''); });
+    on('act-email', function(){ location.href='mailto:'+ (emp.email||''); });
+    on('act-wa', function(){ window.open('https://wa.me/'+ (emp.whatsapp||'').replace(/[^0-9]/g,''), '_blank'); });
+    on('act-vcf', function(){ downloadVCard(emp, co); });
+  }
+
+  function renderMobile(emp, co){
+    document.getElementById('view-profile').innerHTML =
+      '<div class="brand"><img class="logo-img" src="assets/union-logo.png" alt="Union Trading Co." onerror="this.outerHTML=\'<div class=&quot;wordmark&quot;><div class=&quot;u&quot;>&Uuml;nion</div><div class=&quot;sub&quot;>Trading Co.</div></div>\'"></div>'+
+      '<div class="phead"><div class="avatar">'+avatarInner(emp)+'</div>'+
+        '<div class="pmeta">'+badgeHTML()+metaLines(emp)+'</div></div>'+
+      actionsHTML()+
+      companyCard(co)+
+      '<div class="card">'+
+        infoRow('pin','Head Office', co.headOffice, co.headOfficeMap)+
+        infoRow('globe','Website', co.websiteLabel, co.website)+
+        infoRow('linkedin','LinkedIn', emp.linkedinLabel||co.linkedinLabel, emp.linkedin||co.linkedin)+
+      '</div>'+
+      taglineHTML(co);
+    var rt=document.getElementById('rail-tag'); if(rt) rt.innerHTML='';
+  }
+
+  function renderDesktop(emp, co){
+    document.getElementById('view-profile').innerHTML =
+      '<div class="phead"><div class="avatar-wrap"><div class="avatar">'+avatarInner(emp)+'</div>'+badgeHTML()+'</div>'+
+        '<div class="pmeta">'+metaLines(emp)+'</div></div>'+
+      actionsHTML()+
+      '<div class="info-grid">'+
+        companyCard(co)+
+        oneCard('pin','Head Office', co.headOffice, co.headOfficeMap)+
+        oneCard('globe','Website', co.websiteLabel, co.website)+
+        oneCard('linkedin','LinkedIn', emp.linkedinLabel||co.linkedinLabel, emp.linkedin||co.linkedin)+
+      '</div>';
+    var rt=document.getElementById('rail-tag'); if(rt) rt.innerHTML=taglineHTML(co);
+  }
+
   function on(id,fn){ var el=document.getElementById(id); if(el) el.addEventListener('click',fn); }
 
   function downloadVCard(emp, co){
     var parts=String(emp.name||'').split(/\s+/);
     var last=parts.length>1?parts[parts.length-1]:'';
     var first=parts.slice(0,parts.length>1?parts.length-1:1).join(' ');
-    var v=[
-      'BEGIN:VCARD','VERSION:3.0',
-      'N:'+last+';'+first+';;;',
-      'FN:'+emp.name,
-      'ORG:'+(co.name||''),
-      'TITLE:'+(emp.title||''),
-      emp.phone?('TEL;TYPE=CELL:'+emp.phone):'',
-      emp.email?('EMAIL;TYPE=WORK:'+emp.email):'',
-      co.website?('URL:'+co.website):'',
-      emp.linkedin?('URL:'+emp.linkedin):'',
-      co.headOffice?('ADR;TYPE=WORK:;;'+co.headOffice+';;;;'):'',
-      emp.employeeId?('NOTE:Employee ID '+emp.employeeId):'',
-      'END:VCARD'
+    var v=['BEGIN:VCARD','VERSION:3.0','N:'+last+';'+first+';;;','FN:'+emp.name,'ORG:'+(co.name||''),'TITLE:'+(emp.title||''),
+      emp.phone?('TEL;TYPE=CELL:'+emp.phone):'', emp.email?('EMAIL;TYPE=WORK:'+emp.email):'',
+      co.website?('URL:'+co.website):'', emp.linkedin?('URL:'+emp.linkedin):'',
+      co.headOffice?('ADR;TYPE=WORK:;;'+co.headOffice+';;;;'):'', emp.employeeId?('NOTE:Employee ID '+emp.employeeId):'', 'END:VCARD'
     ].filter(Boolean).join('\r\n');
     var blob=new Blob([v],{type:'text/vcard;charset=utf-8'});
     var url=URL.createObjectURL(blob), a=document.createElement('a');
@@ -322,34 +372,29 @@
     setTimeout(function(){ URL.revokeObjectURL(url); },1500);
   }
 
-  // ---- bottom nav / views ----
-  var TABS=[
-    {key:'employee', icon:'person', label:'Employee'},
-    {key:'business', icon:'building', label:'Business'}
-  ];
+  // ---- nav / views ----
+  var TABS=[{key:'employee', icon:'person', label:'Employee'},{key:'business', icon:'building', label:'Business'}];
   var activeTab='employee';
-  function renderNav(){
-    document.getElementById('nav').innerHTML = TABS.map(function(t){
+  function navHTML(){
+    return TABS.map(function(t){
       return '<button class="tab '+(t.key===activeTab?'on':'')+'" data-tab="'+t.key+'"><span class="ico">'+ICON[t.icon]+'</span><span class="lbl">'+esc(t.label)+'</span></button>';
     }).join('');
   }
+  function renderNav(){
+    var h=navHTML();
+    document.getElementById('nav').innerHTML=h;
+    var nd=document.getElementById('navd'); if(nd) nd.innerHTML=h;
+  }
   function companyHTML(co){
-    return '<div style="padding-top:22px">'
-      +'<img class="logo-img" src="assets/union-logo.png" alt="'+esc(co.name)+'" style="width:194px;margin:8px auto 14px;display:block" '
-        +'onerror="this.style.display=\'none\'">'
-      +'<div style="text-align:center;margin-bottom:22px">'
-        +'<div style="color:var(--muted);font-size:14px">'+esc(co.tagline)+'</div></div>'
-      +'<div class="card" style="padding:16px 17px">'
-        +'<div style="font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--faint);margin-bottom:9px">About the company</div>'
-        +'<div style="font-size:14px;color:var(--muted);line-height:1.65">'+esc(co.about||'Company profile content will appear here.')+'</div></div>'
-      +(co.stats&&co.stats.length?('<div style="display:grid;grid-template-columns:repeat('+Math.min(3,co.stats.length)+',1fr);gap:11px;margin-top:14px">'
-        +co.stats.map(function(s){return '<div class="card" style="margin-top:0;padding:14px 12px;text-align:center"><div style="font-size:19px;font-weight:700;font-family:var(--font)">'+esc(s.value)+'</div><div style="font-size:11.5px;color:var(--muted);margin-top:3px">'+esc(s.label)+'</div></div>';}).join('')
-        +'</div>'):'')
-      +'<div class="card">'
-        +infoRow('pin','Head Office',co.headOffice,co.headOfficeMap)
-        +infoRow('globe','Website',co.websiteLabel,co.website)
-        +infoRow('linkedin','LinkedIn',co.linkedinLabel,co.linkedin)
-      +'</div>'
+    var stats=(co.stats&&co.stats.length)?('<div class="co-stats">'+co.stats.slice(0,3).map(function(s){
+      return '<div class="card co-stat"><div class="v">'+esc(s.value)+'</div><div class="l">'+esc(s.label)+'</div></div>';}).join('')+'</div>'):'';
+    return '<div class="company-page">'
+      +'<div class="co-head"><img class="co-logo logo-img" src="assets/union-logo.png" alt="'+esc(co.name)+'" onerror="this.style.display=\'none\'">'
+        +'<div class="co-tag">'+esc(co.tagline)+'</div></div>'
+      +'<div class="card co-about"><div class="co-label">About the company</div>'
+        +'<div class="co-text">'+esc(co.about||'Company profile content will appear here.')+'</div></div>'
+      +stats
+      +'<div class="card co-info">'+infoRow('pin','Head Office',co.headOffice,co.headOfficeMap)+infoRow('globe','Website',co.websiteLabel,co.website)+infoRow('linkedin','LinkedIn',co.linkedinLabel,co.linkedin)+'</div>'
     +'</div>';
   }
   function setTab(key){
@@ -357,33 +402,46 @@
     var isEmp = key==='employee';
     document.getElementById('view-profile').classList.toggle('hidden', !isEmp);
     document.getElementById('view-other').classList.toggle('hidden', isEmp);
-    document.querySelector('.app').classList.toggle('biz', !isEmp);   /* blur bg on company page */
+    document.querySelector('.app').classList.toggle('biz', !isEmp);
     if(!isEmp){ document.getElementById('view-other').innerHTML = companyHTML(DATA.company||{}); }
-    document.querySelector('.scroll').scrollTop=0;
+    var sc=document.querySelector('.scroll'); if(sc) sc.scrollTop=0;
   }
 
-  // ---- share / more ----
+  function renderFoot(co){
+    var f=document.getElementById('foot'); if(!f) return;
+    var yr=(new Date()).getFullYear();
+    var email=(current&&current.email)||''; var wa=((current&&current.whatsapp)||'').replace(/[^0-9]/g,'');
+    f.innerHTML='<div class="foot-copy">&copy; '+yr+' '+esc(co.name||'')+'. All rights reserved.</div>'+
+      '<div class="foot-social">'+
+        (co.linkedin?'<a href="'+esc(co.linkedin)+'" target="_blank" rel="noopener" aria-label="LinkedIn">'+ICON.linkedin+'</a>':'')+
+        (wa?'<a href="https://wa.me/'+wa+'" target="_blank" rel="noopener" aria-label="WhatsApp">'+ICON.whatsapp+'</a>':'')+
+        (email?'<a href="mailto:'+esc(email)+'" aria-label="Email">'+ICON.mail+'</a>':'')+
+      '</div>';
+  }
+
+  // ---- share ----
   document.getElementById('shareBtn').addEventListener('click', function(){
     var title=(current? current.name+' — '+DATA.company.name : DATA.company.name);
     if(navigator.share){ navigator.share({title:title, url:location.href}).catch(function(){}); }
     else if(navigator.clipboard){ navigator.clipboard.writeText(location.href); toast('Link copied'); }
     else toast(location.href);
   });
-
-  document.getElementById('nav').addEventListener('click', function(e){
-    var b=e.target.closest('[data-tab]'); if(b) setTab(b.getAttribute('data-tab'));
-  });
   document.addEventListener('click', function(e){
+    var b=e.target.closest('[data-tab]'); if(b){ setTab(b.getAttribute('data-tab')); return; }
     var l=e.target.closest('[data-link]'); if(l) setTab(l.getAttribute('data-link'));
   });
-
   function toast(msg){
     var d=document.createElement('div'); d.textContent=msg;
     d.style.cssText='position:fixed;left:50%;bottom:96px;transform:translateX(-50%);background:rgba(255,255,255,.95);color:#111;padding:9px 16px;border-radius:999px;font-size:13px;font-weight:600;z-index:50;box-shadow:0 10px 30px -8px rgba(0,0,0,.7)';
     document.body.appendChild(d); setTimeout(function(){ d.remove(); },1600);
   }
 
-  // ---- boot ----
+  // re-render when crossing the desktop/mobile breakpoint
+  var wasDesktop=mqDesktop.matches;
+  window.addEventListener('resize', function(){
+    if(mqDesktop.matches!==wasDesktop){ wasDesktop=mqDesktop.matches; if(current){ render(current, DATA.company||{}); } }
+  });
+
   function boot(data){
     DATA=data;
     var id=qs('id');
@@ -392,14 +450,13 @@
     document.querySelector('.app').classList.toggle('exec', isExec);
     document.title = current ? (current.name+' · '+data.company.name) : data.company.name;
     render(current||{}, data.company||{});
-    renderNav(); setTab('employee');
+    renderNav(); renderFoot(data.company||{}); setTab('employee');
   }
 
   fetch('data/employees.json',{cache:'no-store'})
     .then(function(r){ if(!r.ok) throw 0; return r.json(); })
     .then(boot)
     .catch(function(){
-      // fallback so the page still renders if the data file can't be fetched
       boot({company:{name:'Union Trading Co.',tagline:'Connecting Generations Through Technology',headOffice:'Shuwaikh Industrial, Kuwait',website:'https://www.uniontc.com',websiteLabel:'www.uniontc.com',linkedin:'#',linkedinLabel:'Union Trading Co.',closing:'Together, we build connections that power a better tomorrow.'},
         employees:[{id:'UTC-0001',employeeId:'UTC-0001',name:'Ahmed Al Mutairi',title:'Sales Manager',department:'Sales Department',photo:'',phone:'+965 9000 0001',email:'ahmed.almutairi@uniontc.com',whatsapp:'96590000001',linkedin:'#',linkedinLabel:'Ahmed Al Mutairi'}]});
     });
