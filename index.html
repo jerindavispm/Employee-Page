@@ -395,7 +395,7 @@
     return '<div class="company-page">'
       +'<div class="co-head"><img class="co-logo logo-img" src="assets/union-logo.png" alt="'+esc(co.name)+'" onerror="this.style.display=\'none\'">'
         +'<div class="co-tag">'+esc(co.tagline)+'</div></div>'
-      +'<div class="card co-about"><div class="co-label">About the company</div>'
+      +'<div class="card co-about">'
         +'<div class="co-text">'+esc(co.about||'Company profile content will appear here.').replace(/(Our Vision|Our Mission|Our Core Values|UNION)/g,'<strong>$1</strong>')+'</div></div>'
       +stats
       +'<div class="card co-info">'+infoRow('pin','Head Office',co.headOffice,co.headOfficeMap)+infoRow('globe','Website',co.websiteLabel,co.website)+infoRow('linkedin','LinkedIn',co.linkedinLabel,co.linkedin)+'</div>'
