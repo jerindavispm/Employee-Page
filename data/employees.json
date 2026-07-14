@@ -1,0 +1,47 @@
+{
+  "company": {
+    "name": "Union Trading Co.",
+    "tagline": "Connecting Generations Through Technology",
+    "headOffice": "Shuwaikh Industrial, Kuwait",
+    "headOfficeMap": "https://maps.google.com/?q=Shuwaikh+Industrial+Kuwait",
+    "website": "https://www.uniontc.com",
+    "websiteLabel": "www.uniontc.com",
+    "linkedin": "https://www.linkedin.com/company/union-trading-co",
+    "linkedinLabel": "Union Trading Co.",
+    "closing": "Together, we build connections that power a better tomorrow.",
+    "about": "Union Trading Co. is a Kuwait-based group connecting generations through technology — delivering trusted products, solutions and services across the region. (Placeholder text — share the real company profile and I'll drop it in.)",
+    "stats": [
+      { "value": "50+", "label": "Years" },
+      { "value": "300+", "label": "Team" },
+      { "value": "Kuwait", "label": "HQ" }
+    ]
+  },
+  "employees": [
+    {
+      "id": "UTC-0001",
+      "employeeId": "UTC-0001",
+      "name": "Ahmed Al Mutairi",
+      "title": "Sales Manager",
+      "department": "Sales Department",
+      "photo": "assets/Profile.jpg",
+      "phone": "+965 9000 0001",
+      "email": "ahmed.almutairi@uniontc.com",
+      "whatsapp": "96590000001",
+      "linkedin": "https://www.linkedin.com/in/ahmed-al-mutairi",
+      "linkedinLabel": "Ahmed Al Mutairi"
+    },
+    {
+      "id": "UTC-0002",
+      "employeeId": "UTC-0002",
+      "name": "Sara Al Otaibi",
+      "title": "Marketing Lead",
+      "department": "Marketing Department",
+      "photo": "assets/photos/UTC-0002.jpg",
+      "phone": "+965 9000 0002",
+      "email": "sara.alotaibi@uniontc.com",
+      "whatsapp": "96590000002",
+      "linkedin": "https://www.linkedin.com/in/sara-al-otaibi",
+      "linkedinLabel": "Sara Al Otaibi"
+    }
+  ]
+}
