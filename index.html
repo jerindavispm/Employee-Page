@@ -28,6 +28,7 @@
     background:url('assets/BG.png') no-repeat;background-size:var(--bgsz,72%) auto;background-position:right var(--bgy,-5vh);
     transition:filter .35s ease, transform .35s ease}
   .app.biz .bgfx{filter:blur(17px) brightness(.6);transform:scale(1.1)}
+  .app.bgv2 .bgfx{background-image:url('assets/BG2.png')}   /* per-employee mobile bg */
   @media(min-width:520px) and (max-width:999.9px){
     body{align-items:center;padding:22px 0}
     .app{min-height:auto;height:min(920px,94vh);border-radius:30px;box-shadow:0 40px 100px -30px rgba(0,0,0,.85), inset 0 0 0 1px rgba(255,255,255,.05)}
@@ -109,6 +110,7 @@
   .co-about{padding:16px 17px}
   .co-label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--faint);margin-bottom:9px}
   .co-text{font-size:14px;color:var(--muted);line-height:1.65}
+  .co-text strong{color:var(--text);font-weight:700}
   .co-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:14px}
   .co-stat{margin-top:0;padding:14px 12px;text-align:center}
   .co-stat .v{font-size:19px;font-weight:700}
@@ -145,7 +147,9 @@
   @media(min-width:1000px){
     body{display:block}
     .app{max-width:none;width:100vw;height:100vh;border-radius:0;box-shadow:none;display:grid;grid-template-columns:280px 1fr;grid-template-rows:1fr auto}
-    .bgfx,.app.exec .bgfx{background-image:url('assets/BGdesktop.png');background-repeat:no-repeat;background-size:auto 82%;background-position:right -4%;transform:none}
+    .bgfx{background-image:url('assets/BGdesktop.png');background-repeat:no-repeat;background-size:auto 82%;background-position:right -4%;transform:none}
+    .app.bgv2 .bgfx{background-image:url('assets/BGdesk.png')}   /* per-employee desktop bg */
+    .app.exec .bgfx{background-image:url('assets/BGdesktop.png')}
     .app.biz .bgfx{filter:blur(22px) brightness(.5);transform:none}
 
     /* sidebar */
@@ -392,7 +396,7 @@
       +'<div class="co-head"><img class="co-logo logo-img" src="assets/union-logo.png" alt="'+esc(co.name)+'" onerror="this.style.display=\'none\'">'
         +'<div class="co-tag">'+esc(co.tagline)+'</div></div>'
       +'<div class="card co-about"><div class="co-label">About the company</div>'
-        +'<div class="co-text">'+esc(co.about||'Company profile content will appear here.')+'</div></div>'
+        +'<div class="co-text">'+esc(co.about||'Company profile content will appear here.').replace(/(Our Vision|Our Mission|Our Core Values|UNION)/g,'<strong>$1</strong>')+'</div></div>'
       +stats
       +'<div class="card co-info">'+infoRow('pin','Head Office',co.headOffice,co.headOfficeMap)+infoRow('globe','Website',co.websiteLabel,co.website)+infoRow('linkedin','LinkedIn',co.linkedinLabel,co.linkedin)+'</div>'
     +'</div>';
@@ -448,6 +452,7 @@
     current = (data.employees||[]).find(function(e){ return e.id===id || e.employeeId===id; }) || (data.employees||[])[0];
     isExec = !!(current && current.variant==='exec');
     document.querySelector('.app').classList.toggle('exec', isExec);
+    document.querySelector('.app').classList.toggle('bgv2', !!(current && current.bg==='v2'));
     document.title = current ? (current.name+' · '+data.company.name) : data.company.name;
     render(current||{}, data.company||{});
     renderNav(); renderFoot(data.company||{}); setTab('employee');

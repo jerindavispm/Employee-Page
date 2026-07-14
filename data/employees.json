@@ -4,14 +4,14 @@
     "tagline": "Connecting Generations Through Technology",
     "headOffice": "Shuwaikh Industrial, Kuwait",
     "headOfficeMap": "https://maps.google.com/?q=Shuwaikh+Industrial+Kuwait",
-    "website": "https://www.uniontc.com",
-    "websiteLabel": "www.uniontc.com",
-    "linkedin": "https://www.linkedin.com/company/union-trading-co",
+    "website": "https://utc.com.kw/",
+    "websiteLabel": "utc.com.kw",
+    "linkedin": "https://www.linkedin.com/company/union-trading-company-kuwait/",
     "linkedinLabel": "Union Trading Co.",
     "closing": "Together, we build connections that power a better tomorrow.",
-    "about": "Union Trading Co. is a Kuwait-based group connecting generations through technology — delivering trusted products, solutions and services across the region. (Placeholder text — share the real company profile and I'll drop it in.)",
+    "about": "At UNION, we believe in the journey, not the destination. Our Corporate Vision and Mission statements are fundamental in our success and will drive us to perform even better. Our Vision - To be the leading distributor and retail operator in the market segments in which we operate. Our Mission - To deliver continuous market leadership for the brands we represent in Retail, FMCG and Electrical Appliances by providing Outstanding Customer Satisfaction. Our Core Values - Trust, commitment, honesty and respect; values which others are only discovering today, but to which people at UNION have been committed for more than 60 years.",
     "stats": [
-      { "value": "50+", "label": "Years" },
+      { "value": "75+", "label": "Years" },
       { "value": "300+", "label": "Team" },
       { "value": "Kuwait", "label": "HQ" }
     ]
@@ -33,16 +33,16 @@
     {
       "id": "UTC-0002",
       "employeeId": "UTC-0002",
-      "variant": "exec",
-      "name": "Thulasi Gonuguntala",
-      "title": "Group IT Business Partner",
-      "department": "Enterprise Business Solutions",
-      "photo": "assets/photos/Employeedemo.jpg",
+      "bg": "v2",
+      "name": "John Knight",
+      "title": "CEO",
+      "department": "Management",
+      "photo": "assets/photos/John.jpeg",
       "phone": "+965 9000 0002",
-      "email": "sara.alotaibi@uniontc.com",
+      "email": "JohnKnight@utc.com.kw",
       "whatsapp": "96590000002",
-      "linkedin": "https://www.linkedin.com/in/sara-al-otaibi",
-      "linkedinLabel": "Thulasi Gonuguntala"
+      "linkedin": "https://www.linkedin.com/in/johnwilliamknight/",
+      "linkedinLabel": "John Knight"
     }
   ]
 }
