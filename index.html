@@ -28,7 +28,7 @@
     background:url('assets/BG.png') no-repeat;background-size:var(--bgsz,72%) auto;background-position:right var(--bgy,-5vh);
     transition:filter .35s ease, transform .35s ease}
   .app.biz .bgfx{filter:blur(17px) brightness(.6);transform:scale(1.1)}
-  .app.bgv2 .bgfx{background-image:url('assets/BG2xtend.png');background-size:100% auto;background-position:right -4.6vh}   /* per-employee mobile bg (full-cover) */
+  .app.bgv2 .bgfx{background-image:url('assets/BG2xtend.png');background-size:100% auto;background-position:right -4.6vh;background-color:#000}   /* per-employee mobile bg (full-cover, black fill hides seam) */
   @media(min-width:520px) and (max-width:999.9px){
     body{align-items:center;padding:22px 0}
     .app{min-height:auto;height:min(920px,94vh);border-radius:30px;box-shadow:0 40px 100px -30px rgba(0,0,0,.85), inset 0 0 0 1px rgba(255,255,255,.05)}
@@ -148,7 +148,7 @@
     body{display:block}
     .app{max-width:none;width:100vw;height:100vh;border-radius:0;box-shadow:none;display:grid;grid-template-columns:280px 1fr;grid-template-rows:1fr auto}
     .bgfx{background-image:url('assets/BGdesktop.png');background-repeat:no-repeat;background-size:auto 82%;background-position:right -4%;transform:none}
-    .app.bgv2 .bgfx{background-image:url('assets/BDxtend.png');background-size:cover;background-position:right center}   /* per-employee desktop bg */
+    .app.bgv2 .bgfx{background-image:url('assets/BDxtend.png');background-size:cover;background-position:right center;background-color:#000}   /* per-employee desktop bg */
     .app.exec .bgfx{background-image:url('assets/BGdesktop.png')}
     .app.biz .bgfx{filter:blur(22px) brightness(.5);transform:none}
 
