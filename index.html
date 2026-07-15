@@ -162,8 +162,8 @@
     .navd .tab.on{background:rgba(255,255,255,.08);color:#fff}
     .app.exec .navd .tab.on{background:rgba(230,190,94,.12);color:var(--gold)}
     .rail-spacer{flex:1;min-height:20px}
-    .rail-tag .tagline{margin-top:0;flex-direction:column;align-items:flex-start;text-align:left;gap:13px;padding:20px 18px}
-    .rail-tag .tagline .circ{width:48px;height:48px;background:rgba(255,255,255,.05);border-radius:50%}
+    .rail-tag .tagline{margin-top:0;flex-direction:column;align-items:center;text-align:center;gap:14px;padding:22px 18px;background:#000;border-color:rgba(255,255,255,.18)}
+    .rail-tag .tagline .circ{width:50px;height:50px;background:rgba(255,255,255,.09);border-radius:50%}
     .rail-tag .tagline .circ svg{width:29px}
     .rail-tag .tagline .big{font-size:16px}
     .rail-tag .tagline .small{font-size:13.5px}
@@ -276,6 +276,7 @@
   var DATA = { company:{}, employees:[] };
   var current = null;
   var isExec = false;
+  var SHOW_EMPLOYEE_NO = false;   // temporarily hidden on live — set to true to restore the "Employee No." pill
   function goldable(path){ return isExec ? path.replace(/\.png$/i,'-gold.png') : path; }
   var mqDesktop = window.matchMedia('(min-width:1000px)');
 
@@ -295,7 +296,7 @@
       '<div class="ptitle">'+esc(emp.title)+'</div>'+
       '<div class="pdiv"></div>'+
       '<div class="pdept">'+esc(emp.department)+'</div>'+
-      (emp.employeeId?'<div class="pid">Employee No. '+esc(emp.employeeId)+'</div>':'');
+      ((SHOW_EMPLOYEE_NO && emp.employeeId)?'<div class="pid">Employee No. '+esc(emp.employeeId)+'</div>':'');
   }
   function act(icon,label,id){ return '<button class="act" id="'+id+'"><span class="ico">'+ICON[icon]+'</span><span class="lbl">'+esc(label)+'</span></button>'; }
   function actionsHTML(){ return '<div class="actions">'+act('phone','Call','act-call')+act('mail','Email','act-email')+act('whatsapp','WhatsApp','act-wa')+act('addcontact','Add Contact','act-vcf')+'</div>'; }
