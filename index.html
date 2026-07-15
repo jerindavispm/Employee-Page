@@ -61,11 +61,13 @@
   /* Installed / standalone web-app: fill the whole screen so the bottom nav sits
      at the real screen bottom (no floating card, no gap under the navbar). */
   @media (display-mode:standalone),(display-mode:fullscreen){
-    body{padding:0 !important;align-items:stretch !important;background:#000}
-    .app{width:100% !important;max-width:none !important;height:100vh !important;height:100dvh !important;min-height:100dvh;border-radius:0 !important;box-shadow:none !important}
+    html,body{height:100%;height:-webkit-fill-available}
+    body{margin:0;padding:0 !important;align-items:stretch !important;background:#000}
+    .app{width:100% !important;max-width:none !important;height:100vh !important;height:100dvh !important;height:-webkit-fill-available !important;border-radius:0 !important;box-shadow:none !important}
   }
-  html.pwa body{padding:0 !important;align-items:stretch !important;background:#000;min-height:100dvh}
-  html.pwa .app{width:100% !important;max-width:none !important;height:100vh !important;height:100dvh !important;min-height:100dvh;border-radius:0 !important;box-shadow:none !important}
+  html.pwa,html.pwa body{height:100%;height:-webkit-fill-available}
+  html.pwa body{margin:0;padding:0 !important;align-items:stretch !important;background:#000}
+  html.pwa .app{width:100% !important;max-width:none !important;height:100vh !important;height:100dvh !important;height:-webkit-fill-available !important;border-radius:0 !important;box-shadow:none !important}
   a{color:inherit;text-decoration:none}
   .scroll{flex:1;min-height:0;position:relative;z-index:1;overflow-y:auto;overscroll-behavior:contain;padding:0 20px 22px;scrollbar-width:none}
   .scroll::-webkit-scrollbar{width:0;height:0}
