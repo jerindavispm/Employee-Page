@@ -48,10 +48,11 @@
     --maxw:440px;
   }
   body{background:#0a0a0b;color:var(--text);font-family:var(--font);-webkit-font-smoothing:antialiased;line-height:1.45;display:flex;justify-content:center}
-  .app{width:100%;max-width:var(--maxw);height:100vh;height:100dvh;position:relative;overflow:hidden;background:#050506;display:flex;flex-direction:column}
-  .bgfx{position:absolute;inset:0;z-index:0;pointer-events:none;
+  .app{width:100%;max-width:var(--maxw);height:100vh;height:100dvh;position:relative;overflow:hidden;background:#000;display:flex;flex-direction:column}
+  .bgfx{position:absolute;top:0;left:0;right:0;height:100%;z-index:0;pointer-events:none;
     background-image:url('assets/BG2xtend.png');background-repeat:no-repeat;background-size:100% auto;background-position:right -4.6vh;background-color:#000;
-    transition:filter .35s ease, transform .35s ease}   /* default mobile bg for ALL employees (full-cover, black fill hides seam) */
+    transition:filter .35s ease, transform .35s ease}   /* default mobile bg for ALL employees (full-cover, black fill hides seam); lives inside .scroll so it scrolls with the content */
+  .scroll>*:not(.bgfx){position:relative;z-index:1}   /* keep content above the scrolling background */
   .app.biz .bgfx{filter:blur(17px) brightness(.6);transform:scale(1.1)}
   @media(min-width:520px) and (max-width:999.9px){
     body{align-items:center;padding:22px 0}
@@ -257,7 +258,6 @@
 </head>
 <body>
 <div class="app">
-  <div class="bgfx"></div>
 
   <!-- DESKTOP SIDEBAR -->
   <aside class="rail">
@@ -268,6 +268,7 @@
   </aside>
 
   <div class="scroll">
+    <div class="bgfx"></div>
     <div class="topbar">
       <div class="tb-actions">
         <button class="tb-btn" id="shareBtn">
